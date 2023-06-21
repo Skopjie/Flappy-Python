@@ -3,8 +3,9 @@ from random_utills import RandomUtils
 
 class Enemy_pool():
 
-    time_per_enemy_spawn = 0.7
+    time_per_enemy_spawn = 1
     actual_time = 0
+    is_right = False
 
     enemy = EnemyController(0,0,0,0)
 
@@ -46,7 +47,11 @@ class Enemy_pool():
     
     def instantiate_enemy(self):
         self.get_enemy_pool()
-        self.enemy.change_position(RandomUtils.get_random_number_btw_range(0,self.screen.get_width()), -20)
+        if self.is_right:
+            self.enemy.change_position(RandomUtils.get_random_number_btw_range(-400, -100), -100)
+        else:
+            self.enemy.change_position(RandomUtils.get_random_number_btw_range(100, 400), -100)
+        self.is_right = not self.is_right
         self.enemy.set_active(True)
 
     def cronometro(self, dt):

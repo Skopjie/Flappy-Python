@@ -24,6 +24,8 @@ def show_game_over():
     enemy_pool.is_pool_actived = False
     player.set_active(False)
 
+background_image = pygame.image.load("resources/imgs/Fondo.png")
+background_rect = background_image.get_rect()
 
 player = PlayerController(screen.get_width() / 2, screen.get_height() / 2, screen)
 player.set_active(False)
@@ -49,8 +51,10 @@ while running:
         menu_inicio.handle_event(event)
         menu_game_over.handle_event(event)
 
+
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("white")
+    screen.blit(background_image, background_rect)
 
     player.update(dt)
     player.draw()

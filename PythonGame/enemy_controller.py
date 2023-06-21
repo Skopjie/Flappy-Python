@@ -5,7 +5,7 @@ class EnemyController():
     speed = 4
     is_actived = True
 
-    myimage = pygame.image.load("resources/imgs/orco1.png")
+    myimage = pygame.image.load("resources/imgs/LapizIzq.png")
     imagerect = myimage.get_rect()
 
 
@@ -27,14 +27,21 @@ class EnemyController():
 
     def draw(self):
         if self.is_actived:
-            self.enemy_object = pygame.draw.rect(self.screen, "green", (self.enemy_pos.x, self.enemy_pos.y, self.imagerect.width, self.imagerect.height))
+            self.enemy_object = pygame.draw.rect(self.screen, "red", (self.enemy_pos.x, self.enemy_pos.y, self.imagerect.width, self.imagerect.height))
 
             self.imagerect.x = self.enemy_pos.x
             self.imagerect.y = self.enemy_pos.y
             self.screen.blit(self.myimage, self.imagerect)
 
     def change_position(self, pos_x, pos_y):
+        self.change_sprite(pos_x)
         self.enemy_pos.xy = pos_x, pos_y 
+
+    def change_sprite(self, pos_x):
+        if pos_x > 0:
+            self.myimage = pygame.image.load("resources/imgs/LapizIzq.png")
+        else:
+            self.myimage = pygame.image.load("resources/imgs/LapizDer.png")
 
     def set_active(self, new_is_actived):
         self.is_actived = new_is_actived
